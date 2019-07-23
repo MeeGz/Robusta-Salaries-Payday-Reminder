@@ -2,6 +2,8 @@
 
 namespace App\Reminder;
 
+use Illuminate\Support\Facades\DB;
+
 class BonusReminder extends Reminder
 {
     public $bonus_payment_day;
@@ -20,6 +22,6 @@ class BonusReminder extends Reminder
 
     public function calculateSalaries(): float
     {
-        return (float) Employee::sum('salary');
+        return (float)DB::table("employees")->select(DB::raw("SUM(salary*bonus_rate/100) AS bonus_total"))->first()->bonus_total;
     }
 }

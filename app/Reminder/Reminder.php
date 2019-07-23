@@ -17,15 +17,13 @@ abstract class Reminder implements ReminderInterface
     
     public function handle()
     {
-        //remove not HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-        if(!$this->willSend())
+        if($this->willSend())
         {
             $this->emails = $this->getAdminsEmails();
             $this->month = Carbon::now()->format('F');
             if(count($this->emails) > 0)
             {
                 $this->buildEmail();
-                // return $this;
                 $this->sendEmails($this->emails, $this);
             }
         }

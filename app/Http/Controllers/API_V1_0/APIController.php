@@ -19,14 +19,12 @@ class APIController extends Controller
         // $response['will_send'] = Reminder::willSend();
         // $response['emails'] = User::whereHas('admin')->select('email')->get();
 
+        $reminder = new BonusReminder;
 
-        if(Carbon::now()->day > 15)
-            $reminder = new SalaryReminder;
-        else
-            $reminder = new BonusReminder;
+        // if(Carbon::now()->day > 15)
+        //     $reminder = new SalaryReminder;
+        // else
+        //     $reminder = new BonusReminder;
 
         return response()->json($reminder->handle());
-        
-        Mail::to($reminder->emails)->send(new ReminderMail($reminder));
-        return response()->json(null, 200);
     }}
