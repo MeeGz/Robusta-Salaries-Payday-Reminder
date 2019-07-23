@@ -31,7 +31,7 @@ class User extends Auth
     static public function addAdmin(Request $request)
     {
         $user = User::create($request->only('name', 'email'));
-        $user->admin()->create($request->only('password'));
+        $user->admin()->create(['password' => bcrypt($request->password)]);
         return true;
     }
 

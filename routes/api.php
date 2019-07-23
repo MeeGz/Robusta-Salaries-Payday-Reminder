@@ -22,6 +22,7 @@ Route::group([ 'prefix' => 'v1.0'], function () {
 Route::group([ 'prefix' => 'v1.0', 'middleware' => 'auth:api' ], function () {
     Route::post('logout', 'API_V1_0\Auth\PassportController@logout');
     Route::resource('employees', 'API_V1_0\EmployeeController');
+    Route::resource('admins', 'API_V1_0\AdminController');
 });
 
 Route::get('forget_success','Auth\ResetPasswordController@forgetSuccess');
