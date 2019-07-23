@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Support\Facades\Hash;
 
 class ResetPasswordController extends Controller
 {
@@ -17,15 +22,7 @@ class ResetPasswordController extends Controller
     | explore this trait and override any methods you wish to tweak.
     |
     */
-
     use ResetsPasswords;
-
-    /**
-     * Where to redirect users after resetting their password.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -35,5 +32,53 @@ class ResetPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    /*******************************************************************************/
+    // validation rules for reset password in this broker too as its default is 8 characters hard coded
+    // class name Illuminate\Auth\Passwords\PasswordBroker;
+    // function name validatePasswordWithDefaults()
+    /*******************************************************************************/
+
+    /**
+     * Reset the given user's password.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function reset(Request $request)
+    {
+        $this->validate($request, $this->rules());
+        $token_query = DB::table('password_resets')
+            ->where('email','=', $request->email)
+            ->where('created_at','>',Carbon::now()->subHours(2));
+        $token = $token_query->first();
+        if(!$token)
+            return redirect()->back()->withErrors('email is not correct');
+        if(Hash::check($request->token, $token->token))
+        {
+            $user = User::where('email', $request->email)->first();
+            if($user)
+            {
+                $admin = $user->admin;
+                if($admin)
+                {
+                    $admin->password = bcrypt($request->password);
+                    $admin->save();
+                    $token_query->delete();
+                    return redirect('/api/forget_success');
+                }
+                else
+                    return redirect()->back()->withErrors('email is not correct');
+            }
+            else
+                return redirect()->back()->withErrors('token expired');
+        }
+        return redirect()->back()->withErrors('token expired');
+    }
+
+    public function forgetSuccess()
+    {
+        return view('auth.passwords.success');
     }
 }

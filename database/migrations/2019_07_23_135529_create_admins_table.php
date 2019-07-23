@@ -14,10 +14,19 @@ class CreateAdminsTable extends Migration
     public function up()
     {
         Schema::create('admins', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->index();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id')->index()->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('username');
             $table->string('password');
         });
+        DB::table('admins')->insert(
+            array(
+                'user_id' => 1,
+                'username' => "meegz",
+                'password' => bcrypt('strong_secret_password'),
+            )
+        );
     }
 
     /**

@@ -2,19 +2,18 @@
 
 namespace App;
 
-class User extends Auth
+use Illuminate\Database\Eloquent\Model;
+
+class Admin extends Model
 {
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email',
+        'user_id', 'password',
     ];
-
-    public function admin()
-    {
-        return $this->hasOne(Admin::class);
-    }
+    public $timestamps = false;
 }

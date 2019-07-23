@@ -13,6 +13,18 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group([ 'prefix' => 'v1.0'], function () {
+    Route::post('login','API_V1_0\Auth\PassportController@login');
+    Route::post('password/email','Auth\ForgotPasswordController@getResetToken')->name('password.email');
+    Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
 });
+
+Route::group([ 'prefix' => 'v1.0', 'middleware' => 'auth:api' ], function () {
+    Route::post('logout', 'API_V1_0\Auth\PassportController@logout');
+});
+
+Route::group([ 'prefix' => 'v1.0', 'middleware' => ['auth:api', 'admin'] ], function () {
+    
+});
+
+Route::get('forget_success','Auth\ResetPasswordController@forgetSuccess');

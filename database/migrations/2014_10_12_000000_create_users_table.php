@@ -18,6 +18,12 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
         });
+        DB::table('users')->insert(
+            array(
+                'name' => 'Mohamed Magdy',
+                'email' => 'meegz.mm@gmail.com',
+            )
+        );
     }
 
     /**
