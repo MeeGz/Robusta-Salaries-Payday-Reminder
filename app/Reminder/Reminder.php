@@ -15,7 +15,7 @@ abstract class Reminder implements ReminderInterface
     abstract public function buildEmail(): ReminderInterface;
     abstract public function setDay(int $day): void;
     
-    public function handle()
+    public function handle() : void
     {
         if($this->willSend())
         {
