@@ -16,4 +16,6 @@ class Admin extends Model
         'user_id', 'password',
     ];
     public $timestamps = false;
+    protected $primaryKey = 'user_id';
+
 }

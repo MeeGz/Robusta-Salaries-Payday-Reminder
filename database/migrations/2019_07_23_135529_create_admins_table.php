@@ -17,7 +17,6 @@ class CreateAdminsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->index()->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('username');
             $table->string('password');
         });
         DB::table('admins')->insert(
