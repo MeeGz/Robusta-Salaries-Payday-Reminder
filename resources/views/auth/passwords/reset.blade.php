@@ -6,11 +6,18 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Reset Password') }}</div>
-
                 <div class="card-body">
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                     <form method="POST" action="{{ route('password.update') }}">
+                        @error('token')
+                            <span style="text-align:center;font-weight: bolder; color:red">{{session('errors')->first('token')}}</span>
+                        @enderror
                         @csrf
-
+                        
                         <input type="hidden" name="token" value="{{ $token }}">
 
                         <div class="form-group row">
@@ -18,12 +25,19 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
+                                
+                                @error('emailnotfound')
+                                    <span style="font-weight: bolder; color:red">{{session('errors')->first('emailnotfound')}}</span>
+                                @enderror
+                                @error('emailnologin')
+                                    <span style="font-weight: bolder; color:red">{{session('errors')->first('emailnotfound')}}</span>
+                                @enderror
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                
                             </div>
                         </div>
 
@@ -56,6 +70,11 @@
                                 </button>
                             </div>
                         </div>
+                        @if(session('errors'))
+                            <span class="invalid-feedback" role="alert">
+                                {{session('errors')->first('token')}}
+                            </span>
+                        @endif
                     </form>
                 </div>
             </div>

@@ -49,32 +49,29 @@ class ResetPasswordController extends Controller
     public function reset(Request $request)
     {
         $this->validate($request, $this->rules());
+        $user = User::where('email', $request->email)->first();
+        if(!$user)
+            return redirect()->back()->withErrors(['emailnotfound'=>'email not found']);
         $token_query = DB::table('password_resets')
             ->where('email','=', $request->email)
             ->where('created_at','>',Carbon::now()->subHours(2));
         $token = $token_query->first();
         if(!$token)
-            return redirect()->back()->withErrors('email is not correct');
+            return redirect()->back()->withErrors(['token'=>'token expired']);
         if(Hash::check($request->token, $token->token))
         {
-            $user = User::where('email', $request->email)->first();
-            if($user)
+            $admin = $user->admin;
+            if($admin)
             {
-                $admin = $user->admin;
-                if($admin)
-                {
-                    $admin->password = bcrypt($request->password);
-                    $admin->save();
-                    $token_query->delete();
-                    return redirect('/api/forget_success');
-                }
-                else
-                    return redirect()->back()->withErrors('email is not correct');
+                $admin->password = bcrypt($request->password);
+                $admin->save();
+                $token_query->delete();
+                return redirect('/api/forget_success');
             }
             else
-                return redirect()->back()->withErrors('token expired');
+                return redirect()->back()->withErrors(['emailnologin' => 'email has no login feature']);
         }
-        return redirect()->back()->withErrors('token expired');
+        return redirect()->back()->withErrors(['token' => 'token expired']);
     }
 
     public function forgetSuccess()
