@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Http\Controllers\API_V1_0\APIController;
 use Carbon\Carbon;
 use App\Reminder\SalaryReminder;
 use App\Reminder\BonusReminder;
