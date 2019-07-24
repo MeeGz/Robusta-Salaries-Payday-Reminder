@@ -27,7 +27,8 @@ Forgot password feature that sends an email for your email account and follow st
 ## APIs ##
 There is file Robusta-Salary-Reminder.postman_collection.json which conains examples for all APIs installed in this app
 
-### Login### <br>
+### Auth ###
+#### Login ####
 ```javascript
 post: {app_url}api/v1.0/login
 body:
@@ -37,7 +38,7 @@ body:
 }
 ```
 
-### Logout### <br>
+#### Logout ####
 ```javascript
 post: {app_url}api/v1.0/logout
 header:
@@ -47,7 +48,7 @@ header:
 }
 ```
 
-### Forgot Password### <br>
+#### Forgot Password ####
 ```javascript
 post: {app_url}api/v1.0/password/email
 body:
@@ -58,12 +59,12 @@ body:
 
 ### BEARER TOKEN MUST BE INCLUDED IN ALL REQUESTS BELOW ###
 
-### Employees###<br>
-**Get All Employees:**<br>
+### Employees ###
+#### Get All Employees ####
 ```javascript
 get: {app_url}api/v1.0/employees<br>
 ```
-**Set Employee:**<br>
+#### Set Employee ####
 ```javascript
 post: {app_url}api/v1.0/employees
 body:
@@ -75,11 +76,11 @@ body:
 }
 ```
 
-**Get an Employee:**<br>
+#### Get an Employee ####
 ```javascript
 get: {app_url}api/v1.0/employees/{id}
 ```
-**Update an Employee:**<br>
+#### Update an Employee ####
 ```javascript
 put: {app_url}api/v1.0/employees/{id}
 body:
@@ -90,15 +91,15 @@ body:
     "bonus_rate": {rate},
 }
 ```
-**Delete an Employee:**<br>
+#### Delete an Employee ####
 delete: {app_url}api/v1.0/employees/{id}<br>
 
-### Admins###<br>
-**Get All Admins:**<br>
+### Admins ###
+#### Get All Admins ####
 ```javascript
 get: {app_url}api/v1.0/admins<br>
 ```
-**Set Admin:**<br>
+#### Set Admin ####
 ```javascript
 post: {app_url}api/v1.0/admins
 body:
@@ -109,11 +110,11 @@ body:
 }
 ```
 
-**Get an Admin:**<br>
+#### Get an Admin ####
 ```javascript
 get: {app_url}api/v1.0/admins/{id}
 ```
-**Update an Admin:**<br>
+#### Update an Admin ####
 ```javascript
 put: {app_url}api/v1.0/admins/{id}
 body:
@@ -124,24 +125,23 @@ body:
 }
 ```
 
-**Delete an Admin:**<br>
+#### Delete an Admin ####
 ```javascript
 delete: {app_url}api/v1.0/admins/{id}
 ```
-### Payments###<br>
-**Get All Stored Payments:**<br>
+### Payments ###
+#### Get All Stored Payments ####
 ```javascript
 get: {app_url}api/v1.0/payments
 ```
-**Get All Stored Payments for this year and the remainder till end of this year:**<br>
+#### Get All Stored Payments for this year and the remainder till end of this year ####
 ```javascript
 get: {app_url}api/v1.0/payments/year
 ```
-**Get Remainder Payments for this year:**<br>
+#### Get Remainder Payments for this year ####
 ```javascript
 get: {app_url}api/v1.0/payments/year/remainder
 ```
 
-
-**Notes**
+### Notes ###
 There is no need to add admin middleware as it's already separated by database tables
