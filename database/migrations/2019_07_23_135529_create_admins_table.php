@@ -21,7 +21,6 @@ class CreateAdminsTable extends Migration
         DB::table('admins')->insert(
             array(
                 'user_id' => 1,
-                'username' => "meegz",
                 'password' => bcrypt('strong_secret_password'),
             )
         );
