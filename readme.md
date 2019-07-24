@@ -17,7 +17,26 @@ composer install
 php artisan migrate
 php artisan passport:install
 ```
-You are ready to go :)
+
+DO NOT FORGET to add .env file configurations
+```
+APP_URL={url}
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE={database_name}
+DB_USERNAME={database_user}
+DB_PASSWORD={database_password}
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME={email}
+MAIL_PASSWORD={app_password}
+MAIL_ENCRYPTION=tls
+```
+Or any other alternatives.
+
+Now, you are ready to go :)
 
 ## Authentication ##
 In this app user default authentication is overridden with custom auth via view email and password are in separated tables.
