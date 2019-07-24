@@ -29,7 +29,7 @@ There is file Robusta-Salary-Reminder.postman_collection.json which conains exam
 
 ### Auth ###
 #### Login ####
-```javascript
+```
 post: {app_url}api/v1.0/login
 body:
 {
@@ -39,7 +39,7 @@ body:
 ```
 
 #### Logout ####
-```javascript
+```
 post: {app_url}api/v1.0/logout
 header:
 {
@@ -49,7 +49,7 @@ header:
 ```
 
 #### Forgot Password ####
-```javascript
+```
 post: {app_url}api/v1.0/password/email
 body:
 {
@@ -61,11 +61,11 @@ body:
 
 ### Employees ###
 #### Get All Employees ####
-```javascript
+```
 get: {app_url}api/v1.0/employees<br>
 ```
 #### Set Employee ####
-```javascript
+```
 post: {app_url}api/v1.0/employees
 body:
 {
@@ -77,11 +77,11 @@ body:
 ```
 
 #### Get an Employee ####
-```javascript
+```
 get: {app_url}api/v1.0/employees/{id}
 ```
 #### Update an Employee ####
-```javascript
+```
 put: {app_url}api/v1.0/employees/{id}
 body:
 {
@@ -96,11 +96,11 @@ delete: {app_url}api/v1.0/employees/{id}<br>
 
 ### Admins ###
 #### Get All Admins ####
-```javascript
+```
 get: {app_url}api/v1.0/admins<br>
 ```
 #### Set Admin ####
-```javascript
+```
 post: {app_url}api/v1.0/admins
 body:
 {
@@ -111,11 +111,11 @@ body:
 ```
 
 #### Get an Admin ####
-```javascript
+```
 get: {app_url}api/v1.0/admins/{id}
 ```
 #### Update an Admin ####
-```javascript
+```
 put: {app_url}api/v1.0/admins/{id}
 body:
 {
@@ -126,20 +126,20 @@ body:
 ```
 
 #### Delete an Admin ####
-```javascript
+```
 delete: {app_url}api/v1.0/admins/{id}
 ```
 ### Payments ###
 #### Get All Stored Payments ####
-```javascript
+```
 get: {app_url}api/v1.0/payments
 ```
 #### Get All Stored Payments for this year and the remainder till end of this year ####
-```javascript
+```
 get: {app_url}api/v1.0/payments/year
 ```
 #### Get Remainder Payments for this year ####
-```javascript
+```
 get: {app_url}api/v1.0/payments/year/remainder
 ```
 
