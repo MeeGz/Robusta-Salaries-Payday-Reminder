@@ -11,13 +11,6 @@ To enable sending remindering emails cron service must be enabled and add this j
 ```
 DO NOT FORGET to enable cron service 
 
-After pulling you must run these commands<br>
-```
-composer install
-php artisan migrate
-php artisan passport:install
-```
-
 DO NOT FORGET to add .env file configurations
 ```
 APP_URL={url}
@@ -36,12 +29,19 @@ MAIL_ENCRYPTION=tls
 ```
 Or any other alternatives.
 
+After pulling you must run these commands
+```
+composer install
+php artisan migrate
+php artisan passport:install
+```
+
 Now, you are ready to go :)
 
 ## Authentication ##
-In this app user default authentication is overridden with custom auth via view email and password are in separated tables.
+In this app user default authentication is overridden with custom auth via view due to email and password are in separated tables.
 
-We have here FULL auth Functions with passport package (without registrations as it is not a right way to make any employee or admin to add himself in system)
+We have here FULL auth Functions with passport package (without registrations as it is not a right way to make any employee or admin to add himself in this system but admins to add them)
 
 There is an admin inserted via migration and after running migration command (php artisan migrate) you can login with this account.
 
@@ -69,6 +69,10 @@ body:
 	"email": {email},
 	"password": "{password}"
 }
+success response - code: 200:
+{
+    
+}
 ```
 
 #### Logout ####
@@ -86,7 +90,7 @@ header:
 post: {app_url}api/v1.0/password/email
 body:
 {
-	"email": {email}
+    "email": {email}
 }
 ```
 
@@ -95,7 +99,7 @@ body:
 ### Employees ###
 #### Get All Employees ####
 ```
-get: {app_url}api/v1.0/employees<br>
+get: {app_url}api/v1.0/employees
 ```
 #### Set Employee ####
 ```
@@ -105,7 +109,7 @@ body:
     "name": {name},
     "email": {email},
     "salary": {salary},
-    "bonus_rate": {rate},
+    "bonus_rate": {rate}
 }
 ```
 
@@ -121,16 +125,16 @@ body:
     "name": {name},
     "email": {email},
     "salary": {salary},
-    "bonus_rate": {rate},
+    "bonus_rate": {rate}
 }
 ```
 #### Delete an Employee ####
-delete: {app_url}api/v1.0/employees/{id}<br>
+delete: {app_url}api/v1.0/employees/{id}
 
 ### Admins ###
 #### Get All Admins ####
 ```
-get: {app_url}api/v1.0/admins<br>
+get: {app_url}api/v1.0/admins
 ```
 #### Set Admin ####
 ```

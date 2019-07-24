@@ -2,7 +2,6 @@
 
 namespace App\Reminder;
 
-use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Payment;
 
@@ -10,8 +9,8 @@ class BonusReminder extends Reminder
 {
     public function handle(): void
     {
-        $now = Carbon::now();
-        $day = $this->getBonusDay($now);
+        $prev_month = Carbon::now()->subMonth();
+        $day = $this->getBonusDay($prev_month);
         if($this->willSend($day))
         {
             $this->setReminder($day);
@@ -24,12 +23,12 @@ class BonusReminder extends Reminder
     {
         $now = Carbon::now();
         $payment = Payment::where('month', $now->subMonth()->month)->where('year', $now->year)->first();
+        $this->month = $now->format('F');
+        $this->bonus_payment_day = $day;
+        $this->emails = $this->getAdminsEmails();
         if($payment)
-        {
-            $this->month = $now->format('F');
-            $this->bonus_payment_day = $day;
-            $this->emails = $this->getAdminsEmails();
             $this->bonus_total = $payment->bonus_total;
-        }
+        else 
+            $this->bonus_total = $this->calculateBonus();
     }
 }
