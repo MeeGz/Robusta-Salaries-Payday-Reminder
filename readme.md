@@ -58,8 +58,8 @@ Forgot password feature that sends an email for your email account and follow st
 
 
 ## APIs ##
-There is file Robusta-Salary-Reminder.postman_collection.json which conains examples for all APIs installed in this app<br>
-For responses you will get the standard codes like (200 - 400 - 401 - 403 - 404) amd messages if needed
+There is file Robusta-Salary-Reminder.postman_collection.json which conains examples for all APIs installed in this app.<br>
+For responses, You will get the standard codes like (200 - 400 - 401 - 403 - 404) amd messages if needed
 
 ### Auth ###
 #### Login ####
@@ -67,8 +67,8 @@ For responses you will get the standard codes like (200 - 400 - 401 - 403 - 404)
 post: {app_url}api/v1.0/login
 body:
 {
-	"email": {email},
-	"password": "{password}"
+    "email": {email},
+    "password": {password}
 }
 success response - code: 200:
 {
