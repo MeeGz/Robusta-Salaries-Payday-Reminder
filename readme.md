@@ -5,6 +5,15 @@ This is a simple application that helps companies to not forget to pay for their
 
 App reminds admins by sending emails before 2 days of any payment for employees contain payment details which if it is bonus or salary payment and amount and also it STORE data into database to overcome adding new employees effect from calculating bonus for previous month and to get history of payment also.
 
+<<<<<<< HEAD
+=======
+To enable sending remindering emails cron service must be enabled and add this job to it
+```
+* * * * * cd /path/to/project/directory && php artisan schedule:run >> /dev/null 2>&1
+```
+DO NOT FORGET to enable cron service 
+
+>>>>>>> master
 ## Authentication ##
 In this app user default authentication is overridden with custom auth via view email and password are in separated tables.
 
@@ -12,8 +21,13 @@ We have here FULL auth Functions with passport package (without registrations as
 
 There is an admin inserted via migration and after running migration command (php artisan migrate) you can login with this account.
 
+<<<<<<< HEAD
 **default admin authentication:**<br>
 ```javascript
+=======
+### default admin authentication ###
+```
+>>>>>>> master
 email: meegz.mm@gmail.com
 password: strong_secret_password
 ```
