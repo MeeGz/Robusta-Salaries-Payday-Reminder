@@ -1,0 +1,490 @@
+{
+	"info": {
+		"_postman_id": "32d662ed-7093-4591-b069-cd9dc09354d8",
+		"name": "Robusta-Salary-Reminder",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"meegz.mm@gmail.com\",\n\t\"password\": \"qweqweqwe\"\n}"
+						},
+						"url": {
+							"raw": "{{offline_url_v1.0}}/login",
+							"host": [
+								"{{offline_url_v1.0}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{offline_url_v1.0}}/logout",
+							"host": [
+								"{{offline_url_v1.0}}"
+							],
+							"path": [
+								"logout"
+							]
+						},
+						"description": "MUST have token"
+					},
+					"response": []
+				},
+				{
+					"name": "forgot password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"meegz.mm@gmail.com\"\n}"
+						},
+						"url": {
+							"raw": "{{offline_url_v1.0}}/password/email",
+							"host": [
+								"{{offline_url_v1.0}}"
+							],
+							"path": [
+								"password",
+								"email"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Emplyees",
+			"item": [
+				{
+					"name": "get all employees",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{offline_url_v1.0}}/employees",
+							"host": [
+								"{{offline_url_v1.0}}"
+							],
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "set employee",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"sssm\",\n    \"email\": \"meegz.mmm@gmail.com\",\n    \"salary\": 13000,\n    \"bonus_rate\": 15,\n    \"password\": \"qweqweqwe\"\n}"
+						},
+						"url": {
+							"raw": "{{offline_url_v1.0}}/employees",
+							"host": [
+								"{{offline_url_v1.0}}"
+							],
+							"path": [
+								"employees"
+							]
+						},
+						"description": "if has is_admin attribute the goto add admin\nelse add employee"
+					},
+					"response": []
+				},
+				{
+					"name": "get employee",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{offline_url_v1.0}}/employees/3",
+							"host": [
+								"{{offline_url_v1.0}}"
+							],
+							"path": [
+								"employees",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update employee",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"meeez\",\n    \"email\": \"meeez.mm@gmail.com\",\n    \"salary\": 15000,\n    \"bonus_rate\": 20\n}"
+						},
+						"url": {
+							"raw": "{{offline_url_v1.0}}/employees/3",
+							"host": [
+								"{{offline_url_v1.0}}"
+							],
+							"path": [
+								"employees",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete employee",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{offline_url_v1.0}}/employees/3",
+							"host": [
+								"{{offline_url_v1.0}}"
+							],
+							"path": [
+								"employees",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8604ab89-7ec2-4afa-a322-abeb0addaa6b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9fccd3fd-8787-45b6-ac72-1c35ef76948d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Admins",
+			"item": [
+				{
+					"name": "get all admins",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{offline_url_v1.0}}/admins",
+							"host": [
+								"{{offline_url_v1.0}}"
+							],
+							"path": [
+								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "set admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"sssm\",\n    \"email\": \"meegz.mmm@gmail.com\",\n    \"password\": \"qweqweqwe\"\n}"
+						},
+						"url": {
+							"raw": "{{offline_url_v1.0}}/admins",
+							"host": [
+								"{{offline_url_v1.0}}"
+							],
+							"path": [
+								"admins"
+							]
+						},
+						"description": "if has is_admin attribute the goto add admin\nelse add employee"
+					},
+					"response": []
+				},
+				{
+					"name": "update admin",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"meeez\",\n    \"email\": \"meeez.mm@gmail.com\",\n    \"password\": \"password\"\n}"
+						},
+						"url": {
+							"raw": "{{offline_url_v1.0}}/admins/7",
+							"host": [
+								"{{offline_url_v1.0}}"
+							],
+							"path": [
+								"admins",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete admin",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{offline_url_v1.0}}/admins/3",
+							"host": [
+								"{{offline_url_v1.0}}"
+							],
+							"path": [
+								"admins",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8604ab89-7ec2-4afa-a322-abeb0addaa6b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9fccd3fd-8787-45b6-ac72-1c35ef76948d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Payments",
+			"item": [
+				{
+					"name": "get all payments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{offline_url_v1.0}}/payments",
+							"host": [
+								"{{offline_url_v1.0}}"
+							],
+							"path": [
+								"payments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get payments for this year",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{offline_url_v1.0}}/payments/year",
+							"host": [
+								"{{offline_url_v1.0}}"
+							],
+							"path": [
+								"payments",
+								"year"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get remainder payments for this year",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{offline_url_v1.0}}/payments/year/remainder",
+							"host": [
+								"{{offline_url_v1.0}}"
+							],
+							"path": [
+								"payments",
+								"year",
+								"remainder"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8604ab89-7ec2-4afa-a322-abeb0addaa6b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9fccd3fd-8787-45b6-ac72-1c35ef76948d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjgyY2M0ZDg1MTZlOTBkMjhhYmQyNGY5OGY1NzQxZjNhZjIzN2U0YzQzOTIxYWUyZGI1N2Y5ZWM5ZWYyZGExNzAwMDZhY2FiYzlhZWU4NmJiIn0.eyJhdWQiOiIxIiwianRpIjoiODJjYzRkODUxNmU5MGQyOGFiZDI0Zjk4ZjU3NDFmM2FmMjM3ZTRjNDM5MjFhZTJkYjU3ZjllYzllZjJkYTE3MDAwNmFjYWJjOWFlZTg2YmIiLCJpYXQiOjE1NjM5MDUwNDksIm5iZiI6MTU2MzkwNTA0OSwiZXhwIjoxNTk1NTI3NDQ5LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.DMVxfe7cGxUQ5-p6qh1QL4pVdZN_Eld-Z-yKKXJD-dicY0b_su4B7vhibQgRlTo30-leuoU973NY30QZ9dBLVUiz-gm4-bfaV3rceIYEuBL7KEzo6VoHHqI4vRGw21lJaruC3v5BDGa-c8gCPsMo6K_wvUc1y5A2Yb7sP3rv9lkfH7rLv4jwfahUwUZJBjy_PtJSa4PhEs7gFpGdBnDZqS67mhjdceTFVVo7gKmid1g_ZqKsvGfXH2x9v9YFUug77LDzTvOSS8l7iks9_ZZwGFW9FrPfuxPFXtX8Ygn9UwMaJNiiM-LNBwQ97ei7LzImfK4ev4auZE4mzgnIq2z0GwJ0gQGfTisD4tfpa_BwnsXKfrhg4F-p2V2ZHv-65o11FLFfBbbYmBxusxx47HRz-YTPKsttzR11y6keM4t7SlZLyBbJ-UTyk7LQScajoTLejjKT4RqR_qJ8tZ8egjdTyfVPnkhofzWxZEKPkSag8Pjr_GXFs7m5P6-UTLZ44wmUWaKDa8AIpIv-7heGUMTMQiV84i3sNX7UfMh4JrXleBrqwxadFmqsoz2V9dYvfzIxo7TbP0_URKl9a-68p5iMewq82nzqo7P0fDgrwBXg7mJCiRpmiWr2GAh9lJggmO4-9WamewBg5BtMbf1uDCAXG4UsCMxwoejFIcfeC7azpsY",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "81e2b327-aeb3-4585-a59a-57f5eefacb19",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "3a56eb3e-8538-4ac0-955a-5d93c96d5063",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "b6f3027b-405c-4aab-b487-8d081d2d9488",
+			"key": "online_url",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "559abd39-fa85-4817-a5be-9f5354bce154",
+			"key": "offline_url_v1.0",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
