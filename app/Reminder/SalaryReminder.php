@@ -2,26 +2,39 @@
 
 namespace App\Reminder;
 
-use App\Employee;
+use App\Payment;
+use Carbon\Carbon;
 
 class SalaryReminder extends Reminder
 {
     public $salaries_payment_day;
     public $salaries_total;
 
-    public function buildEmail(): ReminderInterface
+    public function handle(): void
     {
-        $this->salaries_total = $this->calculateSalaries();
-        return $this;
+        $day = $this->getSalaryDay();
+        if($this->willSend($day))
+        {
+            $this->setReminder($day);
+            $this->store();
+            if(count($this->emails) > 0)
+                $this->sendEmails($this->emails, $this);
+        }
     }
 
-    public function setDay(int $day): void
+    public function setReminder(int $day): void
     {
+        $this->emails = $this->getAdminsEmails();
+        $this->month = Carbon::now()->format('F');
+        $this->year = Carbon::now()->year;
         $this->salaries_payment_day = $day;
+        $this->salaries_total = $this->calculateSalaries();
+        $this->bonus_total = $this->calculateBonus();
+        $this->bonus_payment_day = $this->getBonusDay();
     }
 
-    public function calculateSalaries(): float
+    public function store(): void
     {
-        return (float) Employee::sum('salary');
+        Payment::create((array)$this);
     }
 }

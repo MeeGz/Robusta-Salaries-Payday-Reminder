@@ -3,25 +3,32 @@
 namespace App\Reminder;
 
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use App\Payment;
 
 class BonusReminder extends Reminder
 {
-    public $bonus_payment_day;
-    public $bonus_total;
-
-    public function buildEmail(): ReminderInterface
+    public function handle(): void
     {
-        $this->bonus_total = $this->calculateSalaries();
-        return $this;
+        $day = $this->getBonusDay();
+        if($this->willSend($day))
+        {
+            $this->setReminder($day);
+            if(count($this->emails) > 0)
+                $this->sendEmails($this->emails, $this);
+        }
     }
 
-    public function setDay(int $day): void
+    public function setReminder($day): void
     {
-        $this->bonus_payment_day = $day;
-    }
-
-    public function calculateSalaries(): float
-    {
-        return (float)DB::table("employees")->select(DB::raw("SUM(salary*bonus_rate/100) AS bonus_total"))->first()->bonus_total;
+        $now = Carbon::now();
+        $payment = Payment::where('month', $now->subMonth()->month)->where('year', $now->year)->first();
+        if($payment)
+        {
+            $this->month = $now->format('F');
+            $this->bonus_payment_day = $day;
+            $this->emails = $this->getAdminsEmails();
+            $this->bonus_total = $payment->bonus_total;
+        }
     }
 }

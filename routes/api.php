@@ -24,3 +24,5 @@ Route::group([ 'prefix' => 'v1.0', 'middleware' => 'auth:api' ], function () {
 });
 
 Route::get('forget_success','Auth\ResetPasswordController@forgetSuccess');
+
+Route::get('emails','API_V1_0\APIController@emails');

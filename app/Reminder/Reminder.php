@@ -6,68 +6,65 @@ use Carbon\Carbon;
 use App\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ReminderMail;
+use Illuminate\Support\Facades\DB;
+use App\Employee;
 
 abstract class Reminder implements ReminderInterface
 {
     public $month;
-    public $emails;
+    public $year;
+    public $emails = [];
+    public $bonus_total;
+    public $bonus_payment_day;
 
-    abstract public function buildEmail(): ReminderInterface;
-    abstract public function setDay(int $day): void;
-    
-    public function handle() : void
+    abstract public function handle(): void;
+    abstract public function setReminder(int $day): void;
+    public function willSend($day): bool
     {
-        if($this->willSend())
-        {
-            $this->emails = $this->getAdminsEmails();
-            $this->month = Carbon::now()->format('F');
-            if(count($this->emails) > 0)
-            {
-                $this->buildEmail();
-                $this->sendEmails($this->emails, $this);
-            }
-        }
-    }
-
-    public function willSend(): bool
-    {
-        $date = Carbon::now();
-        $day = Carbon::now();
-        $day->endOfMonth();
-        $day = $this->checkPayDay($date, $day);
-        if($day)
-        {
-            $this->setDay($day);
+        // return true; // to test
+        $today = Carbon::now()->day;
+        if($day == $today)
             return true;
-        }
-        $day = Carbon::parse('15th ' . date('M'));
-        $day = $this->checkPayDay($date, $day);
-        if($day)
-        {
-            $this->setDay($day);
-            return true;
-        }
         return false;
     }
 
-    public function checkPayDay(Carbon $date, Carbon $pay): int
+    public function getBonusDay()
     {
-        if($pay->isFriday())
-            $payday = $pay->day - 1;
-        else if($pay->isSaturday())
-            $payday = $pay->day - 2;
+        $day = Carbon::parse('15th ' . date('M'));
+        if($day->isFriday())
+            $payday = $day->day - 1;
+        else if($day->isSaturday())
+            $payday = $day->day - 2;
         else
-            $payday = $pay->day;
+            $payday = $day->day;
+        return $payday;
+    }
 
-        $day = $date->day;
-        if($day == $payday)
-            return $day;
-        return 0;
+    public function getSalaryDay()
+    {
+        $day = Carbon::now()->endOfMonth();
+        if($day->isFriday())
+            $payday = $day->day - 1;
+        else if($day->isSaturday())
+            $payday = $day->day - 2;
+        else
+            $payday = $day->day;
+        return $payday;
     }
 
     public function getAdminsEmails(): array
     {
         return User::whereHas('admin')->select('email')->pluck('email')->toArray();
+    }
+
+    public function calculateSalaries(): float
+    {
+        return (float) Employee::sum('salary');
+    }
+
+    public function calculateBonus(): float
+    {
+        return (float)DB::table("employees")->select(DB::raw("SUM(salary*bonus_rate/100) AS bonus_total"))->first()->bonus_total;
     }
 
     public function sendEmails(array $emails, ReminderInterface $reminder): void

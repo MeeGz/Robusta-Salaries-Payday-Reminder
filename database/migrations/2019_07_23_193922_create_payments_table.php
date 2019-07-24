@@ -16,9 +16,11 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->enum('month',['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']);
-            $table->int('year');
-            $table->double('salary');
-            $table->double('bonus');
+            $table->integer('year');
+            $table->double('salaries_total');
+            $table->double('salaries_payment_day');
+            $table->double('bonus_total')->nullable();
+            $table->double('bonus_payment_day')->nullable();
         });
     }
 
