@@ -21,6 +21,7 @@ Route::group([ 'prefix' => 'v1.0', 'middleware' => 'auth:api' ], function () {
     Route::post('logout', 'API_V1_0\Auth\PassportController@logout');
     Route::resource('employees', 'API_V1_0\EmployeeController');
     Route::resource('admins', 'API_V1_0\AdminController');
+    Route::get('payments/year/remainder', 'API_V1_0\PaymentController@yearRemainder');
     Route::get('payments/year', 'API_V1_0\PaymentController@yearPayments');
     Route::resource('payments', 'API_V1_0\PaymentController')->only('index');
 });

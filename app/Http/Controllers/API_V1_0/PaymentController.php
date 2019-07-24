@@ -15,11 +15,30 @@ class PaymentController extends Controller
      */
     public function yearPayments()
     {
+        $payments = $this->handleYearPayments(true);
+        return response()->json($payments, 200);
+    }
+
+    /**
+     * Display a listing of the resource for stored and remainder for this year.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function yearRemainder()
+    {
+        $payments = $this->handleYearPayments();
+        return response()->json($payments, 200);
+    }
+
+    public function handleYearPayments($all = false)
+    {
         $now = Carbon::now();
         $model = new Payment;
-        $payments = Payment::where('year', $now->year)->select("month", "salaries_total", "salaries_payment_day", "bonus_total", "bonus_payment_day")->get();
-        $payments = $model->getRemainderMonths($payments, $now);
-        return response()->json($payments, 200);
+        if($all)
+            $payments = Payment::where('year', $now->year)->select("month", "salaries_total", "salaries_payment_day", "bonus_total", "bonus_payment_day")->get();
+        else
+            $payments = [];
+        return $payments = $model->getRemainderMonths($payments, $now, $all);
     }
 
     /**

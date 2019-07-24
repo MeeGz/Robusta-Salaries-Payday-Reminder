@@ -32,17 +32,20 @@ class Payment extends Model
         return $this->salaries_total + $this->bonus_total;
     }
 
-    public function getRemainderMonths($payments, $now)
+    public function getRemainderMonths($payments, $now, $all = false)
     {
-        $i = 0;
+        if($all)
+            $i = 0;
+        else
+            $i = $now->month;
         if(count($payments) > 0)
         {
             $last_month = $payments[count($payments)-1]->month;
-            $i = Carbon::parse($last_month)->month;
+            $i = Carbon::parse($last_month)->month + 1;
         }
         $total_salaries = $this->calculateSalaries();
         $total_bonus = $this->calculateBonus();
-        for ($i++; $i <= 12; $i++) {
+        for (; $i <= 12; $i++) {
             $payments[] = (object)[
                 "month" => Carbon::createFromDate($now->year, $i)->format('F'),
                 "salaries_total" => $total_salaries,
