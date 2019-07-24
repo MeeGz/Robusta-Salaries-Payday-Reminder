@@ -46,12 +46,13 @@ class Payment extends Model
         $total_salaries = $this->calculateSalaries();
         $total_bonus = $this->calculateBonus();
         for (; $i <= 12; $i++) {
+            $date = Carbon::createFromDate($now->year, $i);
             $payments[] = (object)[
-                "month" => Carbon::createFromDate($now->year, $i)->format('F'),
+                "month" => $date->format('F'),
                 "salaries_total" => $total_salaries,
-                "salaries_payment_day" => 31,
+                "salaries_payment_day" => $this->getBonusDay($date),
                 "bonus_total" => $total_bonus,
-                "bonus_payment_day" => 15,
+                "bonus_payment_day" => $this->getSalaryDay($date),
                 "payments_total" => $total_salaries + $total_bonus
             ];
         }
