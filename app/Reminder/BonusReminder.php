@@ -10,7 +10,8 @@ class BonusReminder extends Reminder
 {
     public function handle(): void
     {
-        $day = $this->getBonusDay();
+        $now = Carbon::now();
+        $day = $this->getBonusDay($now);
         if($this->willSend($day))
         {
             $this->setReminder($day);

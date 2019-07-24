@@ -12,7 +12,8 @@ class SalaryReminder extends Reminder
 
     public function handle(): void
     {
-        $day = $this->getSalaryDay();
+        $now = Carbon::now();
+        $day = $this->getSalaryDay($now);
         if($this->willSend($day))
         {
             $this->setReminder($day);
@@ -24,13 +25,14 @@ class SalaryReminder extends Reminder
 
     public function setReminder(int $day): void
     {
+        $now = Carbon::now();
         $this->emails = $this->getAdminsEmails();
-        $this->month = Carbon::now()->format('F');
-        $this->year = Carbon::now()->year;
+        $this->month = $now->format('F');
+        $this->year = $now->year;
         $this->salaries_payment_day = $day;
         $this->salaries_total = $this->calculateSalaries();
         $this->bonus_total = $this->calculateBonus();
-        $this->bonus_payment_day = $this->getBonusDay();
+        $this->bonus_payment_day = $this->getBonusDay($now);
     }
 
     public function store(): void

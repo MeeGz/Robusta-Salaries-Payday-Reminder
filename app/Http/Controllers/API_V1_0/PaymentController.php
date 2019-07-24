@@ -16,7 +16,9 @@ class PaymentController extends Controller
     public function index()
     {
         $now = Carbon::now();
-        return $payment = Payment::where('year', $now->year)->select("month", "salaries_total", "salaries_payment_day", "bonus_total", "bonus_payment_day")->get();
+        $model = new Payment;
+        $payments = Payment::where('year', $now->year)->select("month", "salaries_total", "salaries_payment_day", "bonus_total", "bonus_payment_day")->get();
+        $payments = $model->getRemainderMonths($payments, $now);
+        return response()->json($payments, 200);
     }
-
 }
