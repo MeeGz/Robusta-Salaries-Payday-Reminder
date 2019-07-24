@@ -37,6 +37,9 @@ class SalaryReminder extends Reminder
 
     public function store(): void
     {
-        Payment::create((array)$this);
+        Payment::updateOrCreate(
+            ['year' => $this->year, 'month' => $this->month],
+            (array)$this
+        );
     }
 }

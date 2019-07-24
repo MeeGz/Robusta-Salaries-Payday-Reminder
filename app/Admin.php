@@ -17,6 +17,16 @@ class Admin extends Model
     protected $fillable = [
         'user_id', 'password',
     ];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password',
+    ];
+
     public $timestamps = false;
     protected $primaryKey = 'user_id';
 

@@ -6,8 +6,6 @@ use Carbon\Carbon;
 use App\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ReminderMail;
-use Illuminate\Support\Facades\DB;
-use App\Employee;
 use App\Traits\GetDays;
 use App\Traits\GetTotals;
 
@@ -25,9 +23,8 @@ abstract class Reminder implements ReminderInterface
     abstract public function setReminder(int $day): void;
     public function willSend($day): bool
     {
-        // return true; // to test
         $today = Carbon::now()->day;
-        if($day == $today)
+        if($day - 2 == $today) // 2 are the days before payday
             return true;
         return false;
     }
