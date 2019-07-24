@@ -25,7 +25,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"meegz.mm@gmail.com\",\n\t\"password\": \"qweqweqwe\"\n}"
+							"raw": "{\n\t\"email\": \"meegz.mm@gmail.com\",\n\t\"password\": \"asdasdasd\"\n}"
 						},
 						"url": {
 							"raw": "{{offline_url_v1.0}}/login",
@@ -135,7 +135,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"sssm\",\n    \"email\": \"meegz.mmm@gmail.com\",\n    \"salary\": 13000,\n    \"bonus_rate\": 15,\n    \"password\": \"qweqweqwe\"\n}"
+							"raw": "{\n    \"name\": \"sssm\",\n    \"email\": \"meeeegz.mmm@gmail.com\",\n    \"salary\": 10000,\n    \"bonus_rate\": 20\n}"
 						},
 						"url": {
 							"raw": "{{offline_url_v1.0}}/employees",
@@ -156,13 +156,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{offline_url_v1.0}}/employees/3",
+							"raw": "{{offline_url_v1.0}}/employees/2",
 							"host": [
 								"{{offline_url_v1.0}}"
 							],
 							"path": [
 								"employees",
-								"3"
+								"2"
 							]
 						}
 					},
@@ -177,7 +177,8 @@
 								"key": "Content-Type",
 								"name": "Content-Type",
 								"type": "text",
-								"value": "application/json"
+								"value": "application/json",
+								"disabled": true
 							}
 						],
 						"body": {
@@ -273,7 +274,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"sssm\",\n    \"email\": \"meegz.mmm@gmail.com\",\n    \"password\": \"qweqweqwe\"\n}"
+							"raw": "{\n    \"name\": \"sssm\",\n    \"email\": \"meegzz.mmm@gmail.com\",\n    \"password\": \"qweqweqwe\"\n}"
 						},
 						"url": {
 							"raw": "{{offline_url_v1.0}}/admins",
@@ -285,6 +286,24 @@
 							]
 						},
 						"description": "if has is_admin attribute the goto add admin\nelse add employee"
+					},
+					"response": []
+				},
+				{
+					"name": "get admin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{offline_url_v1.0}}/admins/1",
+							"host": [
+								"{{offline_url_v1.0}}"
+							],
+							"path": [
+								"admins",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
@@ -302,16 +321,16 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"meeez\",\n    \"email\": \"meeez.mm@gmail.com\",\n    \"password\": \"password\"\n}"
+							"raw": "{\n    \"name\": \"meeez\",\n    \"email\": \"meeez.mm@gmail.com\",\n    \"password\": \"qweqweqwe\"\n}"
 						},
 						"url": {
-							"raw": "{{offline_url_v1.0}}/admins/7",
+							"raw": "{{offline_url_v1.0}}/admins/1",
 							"host": [
 								"{{offline_url_v1.0}}"
 							],
 							"path": [
 								"admins",
-								"7"
+								"1"
 							]
 						}
 					},
@@ -323,13 +342,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{offline_url_v1.0}}/admins/3",
+							"raw": "{{offline_url_v1.0}}/admins/5",
 							"host": [
 								"{{offline_url_v1.0}}"
 							],
 							"path": [
 								"admins",
-								"3"
+								"5"
 							]
 						}
 					},
@@ -446,7 +465,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjgyY2M0ZDg1MTZlOTBkMjhhYmQyNGY5OGY1NzQxZjNhZjIzN2U0YzQzOTIxYWUyZGI1N2Y5ZWM5ZWYyZGExNzAwMDZhY2FiYzlhZWU4NmJiIn0.eyJhdWQiOiIxIiwianRpIjoiODJjYzRkODUxNmU5MGQyOGFiZDI0Zjk4ZjU3NDFmM2FmMjM3ZTRjNDM5MjFhZTJkYjU3ZjllYzllZjJkYTE3MDAwNmFjYWJjOWFlZTg2YmIiLCJpYXQiOjE1NjM5MDUwNDksIm5iZiI6MTU2MzkwNTA0OSwiZXhwIjoxNTk1NTI3NDQ5LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.DMVxfe7cGxUQ5-p6qh1QL4pVdZN_Eld-Z-yKKXJD-dicY0b_su4B7vhibQgRlTo30-leuoU973NY30QZ9dBLVUiz-gm4-bfaV3rceIYEuBL7KEzo6VoHHqI4vRGw21lJaruC3v5BDGa-c8gCPsMo6K_wvUc1y5A2Yb7sP3rv9lkfH7rLv4jwfahUwUZJBjy_PtJSa4PhEs7gFpGdBnDZqS67mhjdceTFVVo7gKmid1g_ZqKsvGfXH2x9v9YFUug77LDzTvOSS8l7iks9_ZZwGFW9FrPfuxPFXtX8Ygn9UwMaJNiiM-LNBwQ97ei7LzImfK4ev4auZE4mzgnIq2z0GwJ0gQGfTisD4tfpa_BwnsXKfrhg4F-p2V2ZHv-65o11FLFfBbbYmBxusxx47HRz-YTPKsttzR11y6keM4t7SlZLyBbJ-UTyk7LQScajoTLejjKT4RqR_qJ8tZ8egjdTyfVPnkhofzWxZEKPkSag8Pjr_GXFs7m5P6-UTLZ44wmUWaKDa8AIpIv-7heGUMTMQiV84i3sNX7UfMh4JrXleBrqwxadFmqsoz2V9dYvfzIxo7TbP0_URKl9a-68p5iMewq82nzqo7P0fDgrwBXg7mJCiRpmiWr2GAh9lJggmO4-9WamewBg5BtMbf1uDCAXG4UsCMxwoejFIcfeC7azpsY",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjhkNWFkZjM1ZjgzYzQ1MDhiNDZkMmZlMzM5MDJlZDk4YzM1NjM4M2FhM2Q3YzYzYmFhYTYyYmI2MzRiYmY1NzFkZTg3MDdhODc2NjUzMDg2In0.eyJhdWQiOiIxIiwianRpIjoiOGQ1YWRmMzVmODNjNDUwOGI0NmQyZmUzMzkwMmVkOThjMzU2MzgzYWEzZDdjNjNiYWFhNjJiYjYzNGJiZjU3MWRlODcwN2E4NzY2NTMwODYiLCJpYXQiOjE1NjM5NzIzNDQsIm5iZiI6MTU2Mzk3MjM0NCwiZXhwIjoxNTk1NTk0NzQ0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.R3-P5UrRm4xOne2-11JH3ARWzygiuN2OzrQy8LDY3e-C1KaN2WQiGucLQvvpKyJUKsNKlJM5rInkDK6G17fU3D6S2YhwChx1HzqPHHlQtv7R5QMZCM-e1rrxkydrTIrl0tvR2vRIvuVPTaSFpo1lWmcUsQ8Tl_N2S7jX57RdXNVN2a_mqQjOIeuAhbIr-WqUws9zSbsn3blzaoxhobSJfkKrimGpPAjaeUCGvzIbmmqKJHMV439Mq1Z3nAP-89XgAwEyJhRclrFYJI_wAMq235opzutdAwNqzRi0OUqqMolGMv8Bc5YtbrsySgemLekQyBShFOIK9cPY6AX6R9A9BEEvYwlk2r9cniUdAsbdNGO5OEebvwZuZk-IPmqWa5iEnnTSGR9JVMOcD7Sdaw3IG8RwRNd8bqMV3jhV9lxo2k1M_ib9VXu-3HQwBaCPLKBNKkQ2t8luYF3SL7wC4obULBJAzRuNNf16FHMAQL6j1vg4yLO8_pgkXL_a3xQY7ZzcW5d6oHBEbKxY2tZl8GbI_fiJlGih1acU0jn2VPBim3JxeIi8KsrVAXRFHhedJUkGZ59nX72wDHB1-lFMdgd8Q173IzSz5im_6yr6CLkGxOCBf9ke0_C_lkh_SKWGKnfSEN7oboXPqwoxJKP-h613ufkfM-HUgtaQmVIRuW_sF-Y",
 				"type": "string"
 			}
 		]
@@ -475,13 +494,13 @@
 	],
 	"variable": [
 		{
-			"id": "b6f3027b-405c-4aab-b487-8d081d2d9488",
+			"id": "370724a8-27b2-4dfc-82b1-6b66617795de",
 			"key": "online_url",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "559abd39-fa85-4817-a5be-9f5354bce154",
+			"id": "2f292201-66e7-48bd-8ce5-7aebab42a61a",
 			"key": "offline_url_v1.0",
 			"value": "",
 			"type": "string"
