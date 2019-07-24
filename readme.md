@@ -34,6 +34,7 @@ MAIL_USERNAME={email}
 MAIL_PASSWORD={app_password}
 MAIL_ENCRYPTION=tls
 ```
+Or any other alternatives.
 
 Now, you are ready to go :)
 
