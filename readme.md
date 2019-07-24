@@ -27,7 +27,7 @@ Forgot password feature that sends an email for your email account and follow st
 ## APIs ##
 There is file Robusta-Salary-Reminder.postman_collection.json which conains examples for all APIs installed in this app
 
-**Login:**<br>
+### Login### <br>
 ```javascript
 post: {app_url}api/v1.0/login
 body:
@@ -37,7 +37,7 @@ body:
 }
 ```
 
-**Logout:**<br>
+### Logout### <br>
 ```javascript
 post: {app_url}api/v1.0/logout
 header:
@@ -47,7 +47,7 @@ header:
 }
 ```
 
-**Forgot Password:**<br>
+### Forgot Password### <br>
 ```javascript
 post: {app_url}api/v1.0/password/email
 body:
@@ -58,7 +58,7 @@ body:
 
 ### BEARER TOKEN MUST BE INCLUDED IN ALL REQUESTS BELOW ###
 
-**Employees**<br>
+### Employees###<br>
 **Get All Employees:**<br>
 ```javascript
 get: {app_url}api/v1.0/employees<br>
@@ -93,7 +93,7 @@ body:
 **Delete an Employee:**<br>
 delete: {app_url}api/v1.0/employees/{id}<br>
 
-**Admins**<br>
+### Admins###<br>
 **Get All Admins:**<br>
 ```javascript
 get: {app_url}api/v1.0/admins<br>
@@ -128,7 +128,7 @@ body:
 ```javascript
 delete: {app_url}api/v1.0/admins/{id}
 ```
-**Payments**<br>
+### Payments###<br>
 **Get All Stored Payments:**<br>
 ```javascript
 get: {app_url}api/v1.0/payments
