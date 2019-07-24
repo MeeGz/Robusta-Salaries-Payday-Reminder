@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,6 +11,19 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group([ 'prefix' => 'v1.0'], function () {
+    Route::post('login','API_V1_0\Auth\PassportController@login');
+    Route::post('password/email','Auth\ForgotPasswordController@getResetToken')->name('password.email');
+    Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
 });
+
+Route::group([ 'prefix' => 'v1.0', 'middleware' => 'auth:api' ], function () {
+    Route::post('logout', 'API_V1_0\Auth\PassportController@logout');
+    Route::resource('employees', 'API_V1_0\EmployeeController');
+    Route::resource('admins', 'API_V1_0\AdminController');
+    Route::get('payments/year/remainder', 'API_V1_0\PaymentController@yearRemainder');
+    Route::get('payments/year', 'API_V1_0\PaymentController@yearPayments');
+    Route::resource('payments', 'API_V1_0\PaymentController')->only('index');
+});
+
+Route::get('forget_success','Auth\ResetPasswordController@forgetSuccess');

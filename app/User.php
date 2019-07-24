@@ -2,13 +2,11 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 
-class User extends Authenticatable
+class User extends Auth
 {
-    use Notifiable;
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -16,24 +14,32 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email',
     ];
+    public $timestamps = false;
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    public function admin()
+    {
+        return $this->hasOne(Admin::class);
+    }
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function employee()
+    {
+        return $this->hasOne(Employee::class);
+    }
+
+    static public function addAdmin(Request $request)
+    {
+        $user = User::create($request->only('name', 'email'));
+        $user->admin()->create(['password' => bcrypt($request->password)]);
+        return true;
+    }
+
+    static public function addEmployee(Request $request)
+    {
+        $user = User::create($request->only('name', 'email'));
+        $user->employee()->create($request->only('salary', 'bonus_rate'));
+        return true;
+    }
+    
 }
