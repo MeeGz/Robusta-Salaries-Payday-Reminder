@@ -1,6 +1,6 @@
 # Robusta Salary Reminder #
 
-## Documentation and User Guide ##
+## Documentation, Instructions and UserGuide ##
 This is a simple application that helps companies to not forget to pay for their employees :D
 
 App reminds admins by sending emails before 2 days of any payment for employees contain payment details which if it is bonus or salary payment and amount and also it STORE data into database to overcome adding new employees effect from calculating bonus for previous month and to get history of payment also.
@@ -10,6 +10,14 @@ To enable sending remindering emails cron service must be enabled and add this j
 * * * * * cd /path/to/project/directory && php artisan schedule:run >> /dev/null 2>&1
 ```
 DO NOT FORGET to enable cron service 
+
+After pulling you must run these commands<br>
+```
+composer install
+php artisan migrate
+php artisan passport:install
+```
+You are ready to go :)
 
 ## Authentication ##
 In this app user default authentication is overridden with custom auth via view email and password are in separated tables.
