@@ -55,7 +55,7 @@ body:
 }
 ```
 
-**BEARER TOKEN MUST BE INCLUDED IN ALL REQUESTS BELOW**
+### BEARER TOKEN MUST BE INCLUDED IN ALL REQUESTS BELOW ###
 
 **Employees**
 **Get All Employees:**<br>
