@@ -18,4 +18,13 @@ class Payment extends Model
     // disable timestamps
     public $timestamps = false;
 
+    protected $appends = [
+        'payments_total'
+    ];
+
+    public function getPaymentsTotalAttribute()
+    {
+        return $this->salaries_total + $this->bonus_total;
+    }
+
 }
