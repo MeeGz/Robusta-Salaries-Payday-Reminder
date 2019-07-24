@@ -12,10 +12,11 @@ We have here FULL auth Functions with passport package (without registrations as
 
 There is an admin inserted via migration and after running migration command (php artisan migrate) you can login with this account.
 
-default admin authentication:<br>
-email: meegz.mm@gmail.com<br>
-password: strong_secret_password<br>
-
+**default admin authentication:**<br>
+```javascript
+email: meegz.mm@gmail.com
+password: strong_secret_password
+```
 After successfully login you will get access token (that is VERY IMPORTANT to import in every single request except authentication APIs)
 
 Logout feature that destroys the token from database.
@@ -27,8 +28,8 @@ Forgot password feature that sends an email for your email account and follow st
 There is file Robusta-Salary-Reminder.postman_collection.json which conains examples for all APIs installed in this app
 
 **Login:**<br>
-post: {app_url}api/v1.0/login<br>
 ```javascript
+post: {app_url}api/v1.0/login
 body:
 {
 	"email": {email},
@@ -37,8 +38,8 @@ body:
 ```
 
 **Logout:**<br>
-post: {app_url}api/v1.0/logout<br>
 ```javascript
+post: {app_url}api/v1.0/logout
 header:
 {
     "token": "bearer token",
@@ -47,8 +48,8 @@ header:
 ```
 
 **Forgot Password:**<br>
-post: {app_url}api/v1.0/password/email<br>
 ```javascript
+post: {app_url}api/v1.0/password/email
 body:
 {
 	"email": {email}
@@ -57,13 +58,14 @@ body:
 
 ### BEARER TOKEN MUST BE INCLUDED IN ALL REQUESTS BELOW ###
 
-**Employees**
+**Employees**<br>
 **Get All Employees:**<br>
-get: {app_url}api/v1.0/employees<br>
-
-**Set Employee:**<br>
-post: {app_url}api/v1.0/employees<br>
 ```javascript
+get: {app_url}api/v1.0/employees<br>
+```
+**Set Employee:**<br>
+```javascript
+post: {app_url}api/v1.0/employees
 body:
 {
     "name": {name},
@@ -74,11 +76,12 @@ body:
 ```
 
 **Get an Employee:**<br>
-get: {app_url}api/v1.0/employees/{id}<br>
-
-**Update an Employee:**<br>
-put: {app_url}api/v1.0/employees/{id}<br>
 ```javascript
+get: {app_url}api/v1.0/employees/{id}
+```
+**Update an Employee:**<br>
+```javascript
+put: {app_url}api/v1.0/employees/{id}
 body:
 {
     "name": {name},
@@ -87,17 +90,17 @@ body:
     "bonus_rate": {rate},
 }
 ```
-
 **Delete an Employee:**<br>
 delete: {app_url}api/v1.0/employees/{id}<br>
 
-**Admins**
+**Admins**<br>
 **Get All Admins:**<br>
-get: {app_url}api/v1.0/admins<br>
-
-**Set Admin:**<br>
-post: {app_url}api/v1.0/admins<br>
 ```javascript
+get: {app_url}api/v1.0/admins<br>
+```
+**Set Admin:**<br>
+```javascript
+post: {app_url}api/v1.0/admins
 body:
 {
     "name": {name},
@@ -107,11 +110,12 @@ body:
 ```
 
 **Get an Admin:**<br>
-get: {app_url}api/v1.0/admins/{id}<br>
-
-**Update an Admin:**<br>
-put: {app_url}api/v1.0/admins/{id}<br>
 ```javascript
+get: {app_url}api/v1.0/admins/{id}
+```
+**Update an Admin:**<br>
+```javascript
+put: {app_url}api/v1.0/admins/{id}
 body:
 {
     "name": {name},
@@ -121,18 +125,22 @@ body:
 ```
 
 **Delete an Admin:**<br>
-delete: {app_url}api/v1.0/admins/{id}<br>
-
-Payments
+```javascript
+delete: {app_url}api/v1.0/admins/{id}
+```
+**Payments**<br>
 **Get All Stored Payments:**<br>
-get: {app_url}api/v1.0/payments<br>
-
+```javascript
+get: {app_url}api/v1.0/payments
+```
 **Get All Stored Payments for this year and the remainder till end of this year:**<br>
-get: {app_url}api/v1.0/payments/year<br>
-
+```javascript
+get: {app_url}api/v1.0/payments/year
+```
 **Get Remainder Payments for this year:**<br>
-get: {app_url}api/v1.0/payments/year/remainder<br>
-
+```javascript
+get: {app_url}api/v1.0/payments/year/remainder
+```
 
 
 **Notes**
